@@ -32,8 +32,9 @@ in the `.state` stream, which contains objects with the following:
 - `error` the current error text (or empty string if no error)
 - `dirty` if the field has been changed since the `.value` was set
 
-Validation is done asynchronously. It can be explicity called with the async function `.validate`, which resolves
-to the error text (by which time the state stream will have been updated).
+Validation is done asynchronously. It can be explicity called with the async
+function `.validate`, which resolves to `true/false` reflecting if the field
+is valid. By this time, the state stream will have been updated.
 
 ### `FormState`
 
@@ -47,9 +48,11 @@ An aggregated `.state` stream is derived from the constituent fields, and includ
 - `error` the text of the first error in its fields
 - `dirty` if any of the fields is dirty
 
-As with a `FieldState`, a `.validate` can be explicitly called to (async) validate the fields and resolve to the first error text
-or empty string.
+As with a `FieldState`, a `.validate` can be explicitly called to (async)
+validate the fields and resolve to `true` if all fields are valid, or `false`
+otherwise.
 
-Two additional helpers exist:
+Additional helpers:
+- `set(obj)` updates the `.value` of each field with the given object's values
 - `getValues` returns an object of the current `.value` of the fields
-- `getChanges` returns an object of the current `.values` for fields with `.dirty` set
+- `getChanges` returns an object of the current `.value` for fields with `.dirty` set
