@@ -57,8 +57,11 @@ export class FieldState {
     let text = this.state().text || ''
     for (let i = 0; i < this.validator.length; i++) {
       const validator = this.validator[i]
-      error = await validator(text)
-      if (error) break
+      const result = await validator(text)
+      if (result) {
+        error = result
+        break
+      }
     }
     if (!error) {
       const value = parse(text, this.parser)

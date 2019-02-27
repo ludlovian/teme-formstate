@@ -22,7 +22,7 @@ test('Field set value with formatter', t => {
 })
 test('Field set valid text', async t => {
   const f = new FieldState({
-    validator: t => (t.startsWith('f') ? '' : 'Not foo')
+    validator: t => !t.startsWith('f') && 'Not foo'
   })
   f.text('foo')
   let { text, dirty, error, value } = f.state()
