@@ -1,6 +1,6 @@
 {
   "name": "teme-formstate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple stream-based field/form state",
   "source": "src/index.js",
   "main": "dist/index.js",
