@@ -46,7 +46,7 @@ test('Field set invalid text', async t => {
   f.text('bar')
 
   await f.state.changed()
-  let { error } = f.state()
+  const { error } = f.state()
   t.is(error, 'Not foo')
 })
 test('Field set text with parser', async t => {
@@ -80,7 +80,7 @@ test('Complex form', async t => {
   })
 
   t.deepEqual(f.getChanges(), {})
-  let o = { foo: 'foo', bar: 'bar' }
+  const o = { foo: 'foo', bar: 'bar' }
   f.set(o)
   t.deepEqual(f.getValues(), o)
 
@@ -90,7 +90,7 @@ test('Complex form', async t => {
   t.is(f.state().error, 'not foo')
 
   // mark second field in error - should not change the state
-  let unsub = f.state.subscribe(() => t.false(true))
+  const unsub = f.state.subscribe(() => t.false(true))
   f.fields.bar.text('BAR')
   await f.validate()
   unsub()
